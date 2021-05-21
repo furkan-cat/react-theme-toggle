@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Splash from "./Components/Splash";
 import { ThemeProvider } from "styled-components";
-
+import styled from "styled-components";
+// Theme
 const LightTheme = {
   pageBackground: "white",
   titleColor: "#8EE4AF",
@@ -21,6 +22,7 @@ const themes = {
 
 function App() {
   const [theme, setTheme] = useState("light");
+
   return (
     <ThemeProvider theme={themes[theme]}>
       <Splash theme={theme} setTheme={setTheme} />

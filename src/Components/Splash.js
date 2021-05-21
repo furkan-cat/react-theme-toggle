@@ -1,7 +1,11 @@
+import React, { useState } from "react";
+
+import Modal from "./Modal";
 import styled from "styled-components";
 import { CgSun } from "react-icons/cg";
 import { HiMoon } from "react-icons/hi";
 
+// Change Theme
 const Toggle = styled.button`
   cursor: pointer;
   height: 50px;
@@ -43,7 +47,32 @@ const TagLine = styled.span`
   transition: all 0.5s ease;
 `;
 
+// Modal
+const ButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+`;
+
+const Button = styled.button`
+  min-width: 150px;
+  padding: 14px 28px;
+  border-radius: 6px;
+  color: #fff;
+  background: #2c363c;
+  font-size: 24px;
+  cursor: pointer;
+  border: none;
+`;
+
 function Splash(props) {
+  const [showModal, setShowModal] = useState(false);
+
+  const openModalHandler = () => {
+    setShowModal((prev) => !prev);
+  };
+
   function changeTheme() {
     if (props.theme === "light") {
       props.setTheme("dark");
@@ -61,6 +90,10 @@ function Splash(props) {
         <Toggle onClick={changeTheme}>{icon}</Toggle>
         <Title>Click Here to Change Theme</Title>
         <TagLine>Level up your web development skills!</TagLine>
+        <ButtonBox>
+          <Button onClick={openModalHandler}>Click Modal</Button>
+          <Modal showModal={showModal} setShowModal={setShowModal} />
+        </ButtonBox>
       </Container>
     </Page>
   );
